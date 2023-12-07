@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
-	"reflect"
-	"regexp"
 	"strings"
+	"unicode"
 )
 
 // Фраза является палиндромом , если после преобразования всех заглавных букв в
@@ -20,31 +19,20 @@ import (
 // Input: s = "race a car"
 // Output: false
 // Explanation: "raceacar" is not a palindrome.
-
 func isPalindrome(s string) bool {
-
-	newstr := strings.ToLower(s)
-	newstr = strings.ReplaceAll(newstr, " ", "")
-	reg := regexp.MustCompile("[^a-zA-Z]+")
-	result := reg.ReplaceAllString(newstr, "")
-	runes := []rune(result)
-	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
-		runes[i], runes[j] = runes[j], runes[i]
+	s = strings.ToLower(s)
+	runes := []rune{}
+	for _, ch := range s {
+		if unicode.IsLetter(ch) || unicode.IsDigit(ch) {
+			runes = append(runes, ch)
+		}
 	}
-	runes2 := []rune(result)
-
-	fmt.Println(runes)
-	fmt.Println(runes2)
-	if reflect.DeepEqual(runes, runes2) {
-		return true
-
+	for i := 0; i < len(runes)/2; i++ {
+		if runes[i] != runes[len(runes)-i-1] {
+			return false
+		}
 	}
-
-	fmt.Println(runes)
-	fmt.Println(runes2)
-
-	return false
-
+	return true
 }
 
 func main() {
