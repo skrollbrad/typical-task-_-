@@ -9,43 +9,6 @@ import (
 	"strings"
 )
 
-func test(number int, str string) []int {
-	mmax := 30
-	mmin := 15
-	resultSlices := []int{}
-	// number = 25
-	if mmax == number && str == ">=" {
-		resultSlices = append(resultSlices, mmax)
-		return resultSlices
-	} else if mmin == number && str == "<=" {
-		resultSlices = append(resultSlices, mmin)
-		return resultSlices
-	}
-
-	if number >= mmin && number <= mmax && str == "<=" {
-		mmax = number
-		if mmax == mmin {
-			resultSlices = append(resultSlices, mmax)
-		} else if (mmin + 1) >= mmax {
-			resultSlices = append(resultSlices, mmax+1)
-		}
-	} else {
-		resultSlices = append(resultSlices, -1)
-	}
-	if number >= mmin && number <= mmax && str == ">=" {
-		mmin = number
-		if mmax == mmin {
-			resultSlices = append(resultSlices, mmax)
-		} else if (mmax - 1) >= mmin {
-			resultSlices = append(resultSlices, mmax-1)
-		}
-	} else {
-		resultSlices = append(resultSlices, -1)
-	}
-
-	return resultSlices
-}
-
 func main() {
 	var numOfSets int
 
