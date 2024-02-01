@@ -19,7 +19,6 @@ func max(scores []int) []int {
 		}
 	}
 	fmt.Println(scores)
-
 	return scores
 
 }
